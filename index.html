@@ -394,9 +394,7 @@ section { padding: 96px 48px; }
 
 /* ══ CONTACT ══ */
 #kontak { background: var(--bg2); }
-.contact-wrap { max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;}
+.contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 56px; }
 .contact-info { display: flex; flex-direction: column; gap: 24px; }
 .contact-item { display: flex; gap: 16px; align-items: flex-start; }
 .contact-icon {
@@ -407,10 +405,8 @@ section { padding: 96px 48px; }
 .contact-icon svg { width: 20px; height: 20px; color: var(--red); }
 .contact-label { font-size: 10px; color: var(--gray); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 3px; font-family: 'DM Mono', monospace; }
 .contact-val { font-size: 14px; font-weight: 500; }
-.contact-form {  width: 100%;
-    max-width: 1100px;
-    margin: 0 auto; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px;}
+.contact-form { display: flex; flex-direction: column; gap: 16px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .form-group { display: flex; flex-direction: column; gap: 8px; }
 .form-label { font-size: 11px; color: var(--gray); text-transform: uppercase; letter-spacing: 0.08em; font-family: 'DM Mono', monospace; }
 .form-input, .form-textarea, .form-select {
@@ -483,13 +479,9 @@ footer {
 .wa-float svg { width: 28px; height: 28px; color: #fff; }
 
 /* ══ BOOKING STEPS ══ */
-.booking-steps { display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin: 8px auto 32px auto;
-  width: 100%;
-  margin-top: 50px;
+.booking-steps {
+  display: flex; align-items: center; gap: 0;
+  margin-bottom: 32px; margin-top: 8px;
 }
 .bstep {
   display: flex; align-items: center; gap: 10px;
@@ -618,6 +610,193 @@ footer {
 .modal-box-sm .modal-header, .modal-box-sm .modal-body { padding-left: 28px; padding-right: 28px; }
 .modal-box-sm .modal-footer { padding: 0 28px 28px; }
 
+/* ══ PAKET HARGA ══ */
+.pkg-toggle {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin: 32px 0 40px;
+}
+.pkg-tab {
+  padding: 8px 20px; border-radius: 40px;
+  border: 1px solid var(--border2);
+  background: transparent; color: var(--gray);
+  font-size: 13px; font-weight: 500; cursor: pointer;
+  font-family: 'Inter', sans-serif; transition: all 0.2s;
+}
+.pkg-tab:hover { border-color: var(--red); color: var(--white); }
+.pkg-tab.active { background: var(--red); border-color: var(--red); color: #fff; }
+
+.pkg-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+.pkg-card {
+  background: var(--bg3); border: 1px solid var(--border2);
+  border-radius: 12px; overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: transform 0.2s, border-color 0.2s;
+  position: relative;
+}
+.pkg-card:hover { transform: translateY(-4px); border-color: var(--gray2); }
+.pkg-card.pkg-featured {
+  border-color: var(--red);
+  box-shadow: 0 0 0 1px var(--red), 0 8px 32px rgba(232,34,42,0.15);
+}
+.pkg-card.pkg-featured:hover { transform: translateY(-6px); }
+.pkg-card.pkg-custom {
+  border-style: dashed; border-color: var(--gray2);
+  background: linear-gradient(135deg, var(--bg3), var(--bg2));
+}
+
+.pkg-popular {
+  background: var(--red); color: #fff;
+  text-align: center; padding: 6px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+  font-family: 'DM Mono', monospace;
+}
+.pkg-badge {
+  background: var(--green-dim, rgba(76,175,125,0.12));
+  color: #4caf7d;
+  text-align: center; padding: 6px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+  font-family: 'DM Mono', monospace;
+}
+.pkg-top { padding: 24px 24px 0; }
+.pkg-icon { font-size: 32px; margin-bottom: 12px; }
+.pkg-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px; letter-spacing: 0.05em; margin-bottom: 4px;
+}
+.pkg-tagline { font-size: 12px; color: var(--gray); margin-bottom: 16px; line-height: 1.5; }
+.pkg-price { margin-bottom: 4px; }
+.pkg-start { font-size: 11px; color: var(--gray); display: block; margin-bottom: 2px; font-family: 'DM Mono', monospace; }
+.pkg-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px; letter-spacing: 0.03em;
+  color: var(--red);
+}
+.pkg-card.pkg-custom .pkg-num { color: var(--gold, #c9a84c); font-size: 26px; }
+
+.pkg-divider { height: 1px; background: var(--border); margin: 16px 24px; }
+
+.pkg-list { padding: 0 24px; list-style: none; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.pkg-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; color: var(--gray);
+}
+.pkg-item::before { content: ''; width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; }
+.pkg-item.yes { color: var(--white); }
+.pkg-item.yes::before { content: '✓'; background: rgba(76,175,125,0.15); color: #4caf7d; display: flex; align-items: center; justify-content: center; }
+.pkg-item.no { opacity: 0.35; text-decoration: line-through; }
+.pkg-item.no::before { content: '×'; background: var(--red-dim); color: var(--red); display: flex; align-items: center; justify-content: center; }
+
+.pkg-note {
+  margin: 16px 24px 0;
+  background: var(--bg2); border-radius: 6px;
+  padding: 10px 12px; font-size: 11.5px; color: var(--gray);
+  border-left: 3px solid var(--border2); line-height: 1.5;
+}
+.pkg-card.pkg-featured .pkg-note { border-left-color: var(--red); }
+
+.pkg-btn {
+  margin: 16px 24px 24px;
+  background: var(--bg2); color: var(--white);
+  border: 1px solid var(--border2); border-radius: 6px;
+  padding: 12px; font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
+  font-family: 'Inter', sans-serif; letter-spacing: 0.02em;
+}
+.pkg-btn:hover { background: var(--red); border-color: var(--red); }
+.pkg-btn-featured {
+  background: var(--red); border-color: var(--red);
+}
+.pkg-btn-featured:hover { background: var(--red2); }
+.pkg-btn-custom {
+  background: transparent; border-color: var(--gray2); color: var(--gray);
+}
+.pkg-btn-custom:hover { background: var(--gray2); color: var(--white); border-color: var(--gray2); }
+
+.pkg-card.hidden { display: none; }
+
+.pkg-disclaimer {
+  margin-top: 28px;
+  background: var(--bg3); border: 1px solid var(--border2);
+  border-radius: 8px; padding: 14px 20px;
+  font-size: 13px; color: var(--gray); line-height: 1.7;
+}
+.pkg-disclaimer strong { color: var(--white); }
+
+/* ══ FAQ ══ */
+.faq-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 56px;
+  align-items: start;
+}
+.faq-col { display: flex; flex-direction: column; gap: 0; }
+
+.faq-group-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--red);
+  margin-bottom: 14px; margin-top: 4px;
+  display: flex; align-items: center; gap: 8px;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+.faq-item:first-of-type { border-top: 1px solid var(--border); }
+
+.faq-q {
+  width: 100%; background: none; border: none;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; padding: 18px 0;
+  color: var(--white); cursor: pointer;
+  font-family: 'Inter', sans-serif; font-size: 14px;
+  font-weight: 500; text-align: left; line-height: 1.5;
+  transition: color 0.2s;
+}
+.faq-q:hover { color: var(--red); }
+.faq-q.open { color: var(--red); }
+
+.faq-icon {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 1px solid var(--border2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 300; flex-shrink: 0;
+  color: var(--gray); transition: all 0.25s;
+  line-height: 1;
+}
+.faq-q.open .faq-icon {
+  background: var(--red); border-color: var(--red);
+  color: #fff; transform: rotate(45deg);
+}
+
+.faq-a {
+  font-size: 13.5px; color: var(--gray); line-height: 1.8;
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.25s ease;
+  padding: 0 0 0;
+}
+.faq-a.open {
+  max-height: 400px;
+  padding: 0 0 18px;
+}
+.faq-a strong { color: var(--white); font-weight: 600; }
+
+/* CTA bawah FAQ */
+.faq-cta {
+  margin-top: 48px;
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+  padding: 28px 32px;
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 24px;
+  flex-wrap: wrap;
+}
+
 /* ══ MOBILE ══ */
 @media (max-width: 768px) {
   nav { padding: 0 20px; }
@@ -652,11 +831,13 @@ footer {
   <ul class="nav-links">
     <li><a href="#layanan">Layanan</a></li>
     <li><a href="#galeri">Galeri</a></li>
+    <li><a href="#harga">Harga</a></li>
     <li><a href="#kenapa">Kenapa Kami</a></li>
     <li><a href="#testimoni">Testimoni</a></li>
+    <li><a href="#faq">FAQ</a></li>
     <li><a href="#kontak">Kontak</a></li>
   </ul>
-  <a href="https://wa.me/ +62 897-0633-043" class="nav-cta">Hubungi Kami</a>
+  <a href="https://wa.me/628970633043" class="nav-cta">Hubungi Kami</a>
 </nav>
 
 <!-- HERO -->
@@ -966,6 +1147,183 @@ footer {
   </div>
 </section>
 
+<!-- PAKET HARGA -->
+<section id="harga" style="background:var(--bg2)">
+  <div class="section-eyebrow">Paket & Harga</div>
+  <h2 class="section-title">PILIH PAKET<br>SESUAI KEBUTUHANMU</h2>
+  <p class="section-sub">Harga transparan, tidak ada biaya tersembunyi. Semua paket sudah termasuk operator & instalasi.</p>
+
+  <!-- TOGGLE KATEGORI -->
+  <div class="pkg-toggle">
+    <button class="pkg-tab active" onclick="filterPkg('semua', this)">Semua</button>
+    <button class="pkg-tab" onclick="filterPkg('kecil', this)">Event Kecil</button>
+    <button class="pkg-tab" onclick="filterPkg('wedding', this)">Wedding</button>
+    <button class="pkg-tab" onclick="filterPkg('konser', this)">Konser</button>
+    <button class="pkg-tab" onclick="filterPkg('korporat', this)">Korporat</button>
+  </div>
+
+  <div class="pkg-grid" id="pkgGrid">
+
+    <!-- BASIC -->
+    <div class="pkg-card" data-cat="kecil">
+      <div class="pkg-top">
+        <div class="pkg-badge">PALING TERJANGKAU</div>
+        <div class="pkg-icon">🎙️</div>
+        <div class="pkg-name">Paket Basic</div>
+        <div class="pkg-tagline">Untuk acara kecil & intimate</div>
+        <div class="pkg-price">
+          <span class="pkg-start">mulai dari</span>
+          <span class="pkg-num">Rp 500.000</span>
+        </div>
+      </div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-list">
+        <li class="pkg-item yes">1 Speaker Aktif 15"</li>
+        <li class="pkg-item yes">1 Microphone Wireless</li>
+        <li class="pkg-item yes">Mixer Analog 8 Channel</li>
+        <li class="pkg-item yes">Operator 1 Orang</li>
+        <li class="pkg-item yes">Instalasi & Bongkar</li>
+        <li class="pkg-item no">Lighting Stage</li>
+        <li class="pkg-item no">Subwoofer</li>
+      </ul>
+      <div class="pkg-note">Cocok untuk: Arisan, Syukuran, Seminar Kecil, Akad Nikah</div>
+      <button class="pkg-btn" onclick="bookPkg('Paket Basic', '500.000')">Pesan Paket Ini →</button>
+    </div>
+
+    <!-- STANDARD -->
+    <div class="pkg-card" data-cat="kecil">
+      <div class="pkg-top">
+        <div class="pkg-icon">🔊</div>
+        <div class="pkg-name">Paket Standard</div>
+        <div class="pkg-tagline">Event menengah dengan bass yang nendang</div>
+        <div class="pkg-price">
+          <span class="pkg-start">mulai dari</span>
+          <span class="pkg-num">Rp 1.200.000</span>
+        </div>
+      </div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-list">
+        <li class="pkg-item yes">2 Speaker Main 15"</li>
+        <li class="pkg-item yes">1 Subwoofer 18"</li>
+        <li class="pkg-item yes">2 Microphone Wireless</li>
+        <li class="pkg-item yes">Mixer Digital 16 Channel</li>
+        <li class="pkg-item yes">Lighting Basic (Par LED 4 titik)</li>
+        <li class="pkg-item yes">Operator 2 Orang</li>
+        <li class="pkg-item no">Moving Head</li>
+      </ul>
+      <div class="pkg-note">Cocok untuk: Pensi, Ulang Tahun, Event RT/RW, Wisuda</div>
+      <button class="pkg-btn" onclick="bookPkg('Paket Standard', '1.200.000')">Pesan Paket Ini →</button>
+    </div>
+
+    <!-- WEDDING -->
+    <div class="pkg-card pkg-featured" data-cat="wedding">
+      <div class="pkg-popular">⭐ PALING POPULER</div>
+      <div class="pkg-top">
+        <div class="pkg-icon">💍</div>
+        <div class="pkg-name">Paket Wedding</div>
+        <div class="pkg-tagline">Momen sakral, audio & lighting sempurna</div>
+        <div class="pkg-price">
+          <span class="pkg-start">mulai dari</span>
+          <span class="pkg-num">Rp 2.500.000</span>
+        </div>
+      </div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-list">
+        <li class="pkg-item yes">Line Array / Speaker Tiang Full</li>
+        <li class="pkg-item yes">2 Subwoofer 18"</li>
+        <li class="pkg-item yes">4 Microphone Wireless</li>
+        <li class="pkg-item yes">Digital Mixer 32 Channel</li>
+        <li class="pkg-item yes">Lighting Dekoratif (Par + Spot)</li>
+        <li class="pkg-item yes">Uplighting Dekorasi Gedung</li>
+        <li class="pkg-item yes">Operator 3 Orang (Sound + Lighting + MC)</li>
+        <li class="pkg-item yes">Soundcheck H-1</li>
+      </ul>
+      <div class="pkg-note">Cocok untuk: Resepsi Nikah, Lamaran, Pengajian, Sunatan</div>
+      <button class="pkg-btn pkg-btn-featured" onclick="bookPkg('Paket Wedding', '2.500.000')">Pesan Paket Ini →</button>
+    </div>
+
+    <!-- GIGS -->
+    <div class="pkg-card" data-cat="konser">
+      <div class="pkg-top">
+        <div class="pkg-icon">🎸</div>
+        <div class="pkg-name">Paket Gigs / Konser</div>
+        <div class="pkg-tagline">Full setup panggung profesional</div>
+        <div class="pkg-price">
+          <span class="pkg-start">mulai dari</span>
+          <span class="pkg-num">Rp 3.500.000</span>
+        </div>
+      </div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-list">
+        <li class="pkg-item yes">Line Array System (kiri-kanan)</li>
+        <li class="pkg-item yes">4 Subwoofer 18"</li>
+        <li class="pkg-item yes">Monitor Stage (wedge)</li>
+        <li class="pkg-item yes">Digital Mixer FOH + Stage Box</li>
+        <li class="pkg-item yes">DI Box untuk Instrumen</li>
+        <li class="pkg-item yes">Moving Head + Par LED Full</li>
+        <li class="pkg-item yes">Fog Machine</li>
+        <li class="pkg-item yes">Operator Sound Engineer + Lighting</li>
+      </ul>
+      <div class="pkg-note">Cocok untuk: Gigs Band, Festival Musik, Pentas Seni, Konser Kampus</div>
+      <button class="pkg-btn" onclick="bookPkg('Paket Gigs/Konser', '3.500.000')">Pesan Paket Ini →</button>
+    </div>
+
+    <!-- KORPORAT -->
+    <div class="pkg-card" data-cat="korporat">
+      <div class="pkg-top">
+        <div class="pkg-icon">🏢</div>
+        <div class="pkg-name">Paket Corporate</div>
+        <div class="pkg-tagline">Profesional, rapi, berkesan</div>
+        <div class="pkg-price">
+          <span class="pkg-start">mulai dari</span>
+          <span class="pkg-num">Rp 2.000.000</span>
+        </div>
+      </div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-list">
+        <li class="pkg-item yes">Speaker Conference Full</li>
+        <li class="pkg-item yes">Proyektor / LED Screen</li>
+        <li class="pkg-item yes">Microphone Clip-on & Podium</li>
+        <li class="pkg-item yes">Mixer + Power Ampli</li>
+        <li class="pkg-item yes">Lighting Profesional (Rapi & Formal)</li>
+        <li class="pkg-item yes">Operator 2 Orang</li>
+        <li class="pkg-item yes">Backup Unit Standby</li>
+      </ul>
+      <div class="pkg-note">Cocok untuk: Seminar, Launching Produk, RUPS, Training</div>
+      <button class="pkg-btn" onclick="bookPkg('Paket Corporate', '2.000.000')">Pesan Paket Ini →</button>
+    </div>
+
+    <!-- CUSTOM -->
+    <div class="pkg-card pkg-custom" data-cat="konser korporat wedding kecil">
+      <div class="pkg-top">
+        <div class="pkg-icon">⚙️</div>
+        <div class="pkg-name">Paket Custom</div>
+        <div class="pkg-tagline">Desain sesuai kebutuhan & budget kamu</div>
+        <div class="pkg-price">
+          <span class="pkg-start">harga</span>
+          <span class="pkg-num">Fleksibel</span>
+        </div>
+      </div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-list">
+        <li class="pkg-item yes">Konsultasi kebutuhan teknis GRATIS</li>
+        <li class="pkg-item yes">Survei lokasi event</li>
+        <li class="pkg-item yes">Pilih unit sesuai kebutuhan</li>
+        <li class="pkg-item yes">Estimasi harga transparan</li>
+        <li class="pkg-item yes">Negosiasi budget fleksibel</li>
+        <li class="pkg-item yes">Semua jenis event bisa</li>
+      </ul>
+      <div class="pkg-note">Ceritakan kebutuhanmu, kami rancangkan setup terbaik.</div>
+      <button class="pkg-btn pkg-btn-custom" onclick="bookPkg('Paket Custom', 'Negosiasi')">Konsultasi Gratis →</button>
+    </div>
+
+  </div>
+
+  <div class="pkg-disclaimer">
+    💡 <strong>Catatan:</strong> Harga di atas belum termasuk biaya transportasi di luar Kota Jember. Untuk event di luar kota, hubungi kami untuk estimasi. Semua harga dapat disesuaikan.
+  </div>
+</section>
+
 <!-- TESTIMONI -->
 <section id="testimoni">
   <div class="section-eyebrow">Testimoni</div>
@@ -1013,7 +1371,14 @@ footer {
   <div class="section-eyebrow">Hubungi Kami</div>
   <h2 class="section-title">SIAP BOOKING<br>EVENT KAMU?</h2>
   <p class="section-sub">Ceritakan kebutuhanmu, kami siapkan solusi terbaik. Konsultasi gratis, tanpa syarat.</p>
-  <div class="contact-wrap">
+  <div class="booking-steps" style="margin:32px 0 0;">
+    <div class="bstep active" id="step-ind-1"><div class="bstep-num">1</div><div class="bstep-label">Isi Form</div></div>
+    <div class="bstep-line"></div>
+    <div class="bstep" id="step-ind-2"><div class="bstep-num">2</div><div class="bstep-label">Konfirmasi</div></div>
+    <div class="bstep-line"></div>
+    <div class="bstep" id="step-ind-3"><div class="bstep-num">3</div><div class="bstep-label">Kirim &amp; Tunggu</div></div>
+  </div>
+  <div class="contact-wrap" style="margin-top:28px;">
     <div class="contact-info">
       <div class="contact-item">
         <div class="contact-icon">
@@ -1050,23 +1415,6 @@ footer {
           <div class="contact-label">Jam Operasional</div>
           <div class="contact-val">Setiap hari, 08.00 – 22.00 WIB</div>
         </div>
-      </div>
-    </div>
-    <!-- STEP INDICATOR -->
-    <div class="booking-steps">
-      <div class="bstep active" id="step-ind-1">
-        <div class="bstep-num">1</div>
-        <div class="bstep-label">Isi Form</div>
-      </div>
-      <div class="bstep-line"></div>
-      <div class="bstep" id="step-ind-2">
-        <div class="bstep-num">2</div>
-        <div class="bstep-label">Konfirmasi</div>
-      </div>
-      <div class="bstep-line"></div>
-      <div class="bstep" id="step-ind-3">
-        <div class="bstep-num">3</div>
-        <div class="bstep-label">Kirim & Tunggu</div>
       </div>
     </div>
 
@@ -1189,6 +1537,173 @@ footer {
 </div>
 
 <!-- FOOTER -->
+<!-- FAQ -->
+<section id="faq" style="background:var(--bg)">
+  <div class="section-eyebrow">FAQ</div>
+  <h2 class="section-title">PERTANYAAN YANG<br>SERING DITANYAKAN</h2>
+  <p class="section-sub">Belum nemu jawaban yang kamu cari? Langsung hubungi kami via WhatsApp.</p>
+
+  <div class="faq-layout">
+
+    <!-- KOLOM KIRI -->
+    <div class="faq-col">
+
+      <div class="faq-group-label">💰 Harga & Pembayaran</div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Apakah harga di website sudah final?</span>
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          Harga yang tercantum adalah harga <strong>mulai dari</strong> (starting price). Harga final tergantung jenis event, durasi, lokasi, dan unit yang dibutuhkan. Kami selalu memberikan estimasi harga transparan sebelum deal.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Bagaimana sistem pembayaran & DP?</span>
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          Sistem kami: <strong>DP 30–50%</strong> saat konfirmasi booking, sisanya dilunasi maksimal H-1 event atau sesuai kesepakatan. Pembayaran via transfer bank / e-wallet.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Apakah ada biaya survei atau konsultasi?</span>
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          <strong>Tidak ada biaya sama sekali.</strong> Konsultasi via WhatsApp & survei lokasi di dalam Kota Jember gratis. Biaya survei hanya dikenakan untuk luar kota dengan jarak yang jauh.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Bagaimana jika event dibatalkan?</span>
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          Kebijakan pembatalan:<br>
+          • <strong>H-7 atau lebih</strong>: DP dikembalikan 50%<br>
+          • <strong>H-3 sampai H-6</strong>: DP tidak dikembalikan<br>
+          • <strong>H-1 atau hari H</strong>: Full payment tetap berlaku<br>
+          Kami selalu fleksibel untuk reschedule jika ada keadaan darurat.
+        </div>
+      </div>
+
+      <div class="faq-group-label" style="margin-top:24px">📍 Operasional & Lokasi</div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Apakah Permana Sound bisa untuk event luar Jember?</span>
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          Bisa! Kami melayani seluruh wilayah <strong>Eks Karesidenan Besuki</strong> (Jember, Situbondo, Bondowoso, Banyuwangi, Lumajang). Untuk luar area tersebut bisa dinego — akan ada biaya tambahan transport & akomodasi tim.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Berapa jauh hari sebelum event harus booking?</span>
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          Idealnya booking <strong>minimal H-7</strong> untuk event biasa, dan <strong>H-14 s/d H-30</strong> untuk event besar seperti konser atau wedding. Tapi kami tetap menerima booking mendadak jika unit tersedia.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- KOLOM KANAN -->
+    <div class="faq-col">
+
+      <div class="faq-group-label">🔊 Teknis & Peralatan</div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Apakah operator sudah termasuk dalam paket?</span>
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          <strong>Ya, semua paket sudah termasuk operator.</strong> Tergantung paket, bisa 1–3 orang (sound engineer, lighting operator, stage crew). Kamu tidak perlu khawatir soal teknis — kami yang handle.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Bagaimana jika ada alat yang rusak saat event?</span>
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          Kami selalu menyiapkan <strong>unit backup</strong> untuk peralatan utama. Jika terjadi kerusakan mendadak, tim kami langsung switch ke backup tanpa mengganggu jalannya acara.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Apakah bisa soundcheck sebelum event?</span>
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          Tentu! Soundcheck adalah bagian standar dari layanan kami. Setup kami lakukan jauh sebelum tamu datang sehingga ada cukup waktu untuk soundcheck band / pengisi acara.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Apakah kami perlu menyediakan listrik sendiri?</span>
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          Untuk event indoor, biasanya listrik dari venue sudah cukup. Untuk outdoor, kami bisa koordinasikan kebutuhan daya dan rekomendasikan kapasitas genset yang sesuai. Genset bisa disewa terpisah jika diperlukan.
+        </div>
+      </div>
+
+      <div class="faq-group-label" style="margin-top:24px">📱 Cara Booking</div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Bagaimana cara booking Permana Sound?</span>
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          Sangat mudah! Ada 2 cara:<br>
+          1. <strong>Isi form booking</strong> di halaman ini → konfirmasi → pesan otomatis terkirim ke WA kami<br>
+          2. <strong>Langsung chat WA</strong> di tombol hijau pojok kanan bawah<br>
+          Tim kami akan merespons dalam 1×24 jam.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Apakah ada kontrak atau surat perjanjian?</span>
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          <strong>Ada.</strong> Untuk event besar (wedding, konser, corporate), kami menyediakan surat perjanjian kerja sama yang mencakup detail layanan, harga, jadwal, dan ketentuan lainnya demi keamanan kedua pihak.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CTA bawah FAQ -->
+  <div class="faq-cta">
+    <div class="faq-cta-text">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.05em">Masih ada pertanyaan lain?</div>
+      <div style="font-size:13px;color:var(--gray);margin-top:4px">Tim kami siap membantu kamu 08.00 – 22.00 WIB setiap hari.</div>
+    </div>
+    <a href="https://wa.me/628970633043" class="btn-primary" target="_blank">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+      Chat WhatsApp Sekarang
+    </a>
+  </div>
+</section>
+
 <footer>
   <div class="footer-top">
     <div>
@@ -1223,9 +1738,9 @@ footer {
       <div class="footer-col-title">Informasi</div>
       <a href="#">Tentang Kami</a>
       <a href="#">Portfolio</a>
-      <a href="#">Harga Paket</a>
-      <a href="#">Blog / Tips</a>
-      <a href="#">Kontak</a>
+      <a href="#harga">Harga Paket</a>
+      <a href="#faq">FAQ</a>
+      <a href="#kontak">Kontak</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -1250,6 +1765,51 @@ footer {
 </a>
 
 <script>
+// ── FAQ TOGGLE ──
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const ans  = item.querySelector('.faq-a');
+  const isOpen = btn.classList.contains('open');
+
+  // Tutup semua di kolom yang sama
+  btn.closest('.faq-col').querySelectorAll('.faq-q.open').forEach(q => {
+    q.classList.remove('open');
+    q.closest('.faq-item').querySelector('.faq-a').classList.remove('open');
+  });
+
+  // Buka yang diklik (jika sebelumnya tertutup)
+  if (!isOpen) {
+    btn.classList.add('open');
+    ans.classList.add('open');
+  }
+}
+
+// ── FILTER PAKET ──
+function filterPkg(cat, btn) {
+  document.querySelectorAll('.pkg-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.pkg-card').forEach(card => {
+    if (cat === 'semua') {
+      card.classList.remove('hidden');
+    } else {
+      const cats = card.getAttribute('data-cat') || '';
+      cats.includes(cat) ? card.classList.remove('hidden') : card.classList.add('hidden');
+    }
+  });
+}
+
+// ── BOOKING DARI PAKET ──
+function bookPkg(namaPaket, harga) {
+  // Scroll ke form kontak
+  document.getElementById('kontak').scrollIntoView({ behavior: 'smooth' });
+  // Pre-fill pesan
+  setTimeout(() => {
+    const msg = document.getElementById('f-pesan');
+    if (msg) msg.value = `Saya tertarik dengan ${namaPaket} (mulai Rp ${harga}). Mohon info ketersediaan dan detail lebih lanjut.`;
+    document.getElementById('f-event').focus();
+  }, 600);
+}
+
 // ── NOMOR WA PERMANA SOUND (ganti sesuai asli) ──
 const WA_NUMBER = '628970633043';
 
