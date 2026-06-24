@@ -291,14 +291,69 @@ section { padding: 96px 48px; }
   width: 100%; height: 100%;
   display: flex; align-items: center; justify-content: center;
   flex-direction: column; gap: 8px;
+  position: relative;
 }
-.g-emoji { font-size: 40px; opacity: 0.6; }
-.g-caption { font-size: 11px; color: var(--gray2); text-align: center; padding: 0 12px; }
+
+.g-visual video{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* tingkat kepudaran */
+    opacity: 0.2;
+}
+.g-visual::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.75),
+        rgba(0,0,0,0.2)
+    );
+}
+.g-item:hover video{
+    opacity: 10;
+}
+.gallery-item::before {
+    background: rgba(0,0,0,0.4);
+}
+
+.gallery-item:hover::before {
+    background: rgba(0,0,0,0.15);
+}
+.gallery-item img {
+    transition: 0.5s;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.08);
+}
+.g-caption {
+  position: relative;
+  bottom: 15px;
+  left: 15px;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 10;
+}
 .g-overlay {
   position: absolute; inset: 0;
   background: rgba(232,34,42,0.15);
   display: flex; align-items: center; justify-content: center;
   opacity: 0; transition: opacity 0.25s;
+  z-index: 15;
+}
+.caption-right{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    text-align: right;
+    color: #fff;
+    font-weight: 600;
+    z-index: 10;
 }
 .g-play {
   width: 44px; height: 44px; border-radius: 50%;
@@ -816,6 +871,39 @@ footer {
   .footer-top { grid-template-columns: 1fr 1fr; }
   .form-row { grid-template-columns: 1fr; }
 }
+.g-visual video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.video-modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.9);
+    z-index:9999;
+    justify-content:center;
+    align-items:center;
+}
+
+.video-box{
+    width:90%;
+    max-width:1000px;
+}
+
+.video-box video{
+    width:100%;
+}
+
+.video-close{
+    position:absolute;
+    top:20px;
+    right:30px;
+    font-size:40px;
+    color:white;
+    cursor:pointer;
+}
 </style>
 </head>
 <body>
@@ -1026,58 +1114,101 @@ footer {
     <a href="https://instagram.com/permanasound" class="btn-outline" target="_blank">Lihat Instagram →</a>
   </div>
   <div class="gallery-grid">
-    <div class="g-item g-1 g-bg-sound">
-      <div class="g-visual">
-        <div class="g-emoji">🎸</div>
-        <div class="g-caption">Concert Setup — Outdoor Stage Jember</div>
-      </div>
-      <div class="g-overlay"><div class="g-play"><svg fill="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
+
+    <!-- ++OUTDOR++ -->
+
+    <div class="g-item g-1 g-bg-sound"
+     onclick="openVideo('outdor.mp4')">
+     <div class="g-visual">
+    <video muted>
+      <source src="outdor.mp4" type="video/mp4">
+    </video>
+    <div class="g-caption caption-right">
+     Concert Setup — Outdoor Stage Jember
     </div>
-    <div class="g-item g-2 g-bg-light">
-      <div class="g-visual">
-        <div class="g-emoji">💡</div>
-        <div class="g-caption">Lighting Gigs Minimalis</div>
-      </div>
-      <div class="g-overlay"><div class="g-play"><svg fill="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
     </div>
+    <div class="g-overlay">
+    <div class="g-play">
+      <svg fill="currentColor" viewBox="0 0 24 24">
+        <polygon points="5 3 19 12 5 21 5 3"/>
+      </svg>
+      </div>
+      </div>
+    </div>
+
+    <!-- ++LIGHT++ -->
+     
+    <div class="g-item g-2 g-bg-light"
+     onclick="openVideo('rektor-cup-unej.mp4')">
+  <div class="g-visual">
+    <video muted>
+      <source src="rektor-cup-unej.mp4" type="video/mp4">
+    </video>
+    <div class="g-caption">
+      Lighting Gigs Minimalis
+    </div>
+  </div>
+  <div class="g-overlay">
+    <div class="g-play">
+      <svg fill="currentColor" viewBox="0 0 24 24">
+        <polygon points="5 3 19 12 5 21 5 3"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+
+
     <div class="g-item g-3 g-bg-gig">
       <div class="g-visual">
-        <div class="g-emoji">🎙️</div>
         <div class="g-caption">Teater Event — BAREND</div>
       </div>
       <div class="g-overlay"><div class="g-play"><svg fill="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
     </div>
     <div class="g-item g-4 g-bg-sound">
       <div class="g-visual">
-        <div class="g-emoji">🔊</div>
         <div class="g-caption">Line Array Speaker Stack</div>
       </div>
       <div class="g-overlay"><div class="g-play"><svg fill="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
     </div>
-    <div class="g-item g-5 g-bg-light">
-      <div class="g-visual">
-        <div class="g-emoji">🎶</div>
-        <div class="g-caption">UKM Musik Kampus</div>
-      </div>
-      <div class="g-overlay"><div class="g-play"><svg fill="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
+
+    <!-- ++UKM++ -->
+
+    <div class="g-item g-5 g-bg-light"
+     onclick="openVideo('ukm.mp4')">
+  <div class="g-visual">
+    <video muted>
+      <source src="ukm.mp4" type="video/mp4">
+    </video>
+    <div class="g-caption">
+      UKM Musik Kampus
     </div>
+  </div>
+  <div class="g-overlay">
+    <div class="g-play">
+      <svg fill="currentColor" viewBox="0 0 24 24">
+        <polygon points="5 3 19 12 5 21 5 3"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+    <!-- ++cafe++ -->
+
     <div class="g-item g-6 g-bg-gig">
       <div class="g-visual">
-        <div class="g-emoji">🎛️</div>
         <div class="g-caption">Pasang Sound Cafe Anniv</div>
       </div>
       <div class="g-overlay"><div class="g-play"><svg fill="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
     </div>
     <div class="g-item g-7 g-bg-sound">
       <div class="g-visual">
-        <div class="g-emoji">🛠️</div>
         <div class="g-caption">Maintenance & Workshop</div>
       </div>
       <div class="g-overlay"><div class="g-play"><svg fill="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
     </div>
     <div class="g-item g-8 g-bg-light">
       <div class="g-visual">
-        <div class="g-emoji">🎤</div>
         <div class="g-caption">Bersama untuk Bersatu Vol.1</div>
       </div>
       <div class="g-overlay"><div class="g-play"><svg fill="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
@@ -1763,6 +1894,15 @@ footer {
 <a href="https://wa.me/628970633043" class="wa-float" target="_blank" title="Chat WhatsApp">
   <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
 </a>
+<div id="videoModal" class="video-modal">
+  <div class="video-box">
+    <span class="video-close">&times;</span>
+
+    <video id="popupVideo" controls>
+      <source src="" type="video/mp4">
+    </video>
+  </div>
+</div>
 
 <script>
 // ── FAQ TOGGLE ──
@@ -1936,6 +2076,28 @@ document.querySelectorAll('.service-card, .testi-card, .why-item, .g-item').forE
   el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
   observer.observe(el);
 });
+function openVideo(src){
+
+    const modal = document.getElementById('videoModal');
+    const video = document.getElementById('popupVideo');
+
+    video.src = src;
+    modal.style.display = 'flex';
+
+    video.play();
+}
+
+document.querySelector('.video-close').onclick = function(){
+
+    const modal = document.getElementById('videoModal');
+    const video = document.getElementById('popupVideo');
+
+    modal.style.display = 'none';
+
+    video.pause();
+    video.currentTime = 0;
+}
 </script>
+
 </body>
 </html>
