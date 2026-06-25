@@ -758,6 +758,7 @@ footer {
   padding: 12px; font-size: 13px; font-weight: 600;
   cursor: pointer; transition: all 0.2s;
   font-family: 'Inter', sans-serif; letter-spacing: 0.02em;
+  text-decoration: none;
 }
 .pkg-btn:hover { background: var(--red); border-color: var(--red); }
 .pkg-btn-featured {
@@ -767,8 +768,12 @@ footer {
 .pkg-btn-custom {
   background: transparent; border-color: var(--gray2); color: var(--gray);
 }
-.pkg-btn-custom:hover { background: var(--gray2); color: var(--white); border-color: var(--gray2); }
-
+.pkg-btn-custom:hover{
+    background: #1eff00;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgb(6, 2, 4);
+}
 .pkg-card.hidden { display: none; }
 
 .pkg-disclaimer {
@@ -778,6 +783,12 @@ footer {
   font-size: 13px; color: var(--gray); line-height: 1.7;
 }
 .pkg-disclaimer strong { color: var(--white); }
+.pkg-btn,
+.pkg-btn:visited,
+.pkg-btn:hover{
+    text-decoration: none;
+}
+
 
 /* ══ FAQ ══ */
 .faq-layout {
@@ -1531,7 +1542,11 @@ footer {
         <li class="pkg-item yes">Semua jenis event bisa</li>
       </ul>
       <div class="pkg-note">Ceritakan kebutuhanmu, kami rancangkan setup terbaik.</div>
-      <button class="pkg-btn pkg-btn-custom" onclick="bookPkg('Paket Custom', 'Negosiasi')">Konsultasi Gratis →</button>
+      <a href="https://wa.me/628970633043?text=Halo%20Permana%20Sound,%20saya%20ingin%20konsultasi%20mengenai%20paket%20custom."
+   class="pkg-btn pkg-btn-custom"
+   target="_blank">
+   Konsultasi Gratis →
+</a>
     </div>
 
   </div>
