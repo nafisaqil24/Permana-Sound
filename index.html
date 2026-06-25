@@ -557,7 +557,7 @@ footer {
 .bstep.done .bstep-num {
   background: #22c55e; border-color: #22c55e; color: #fff;
 }
-.bstep-label { font-size: 12px; font-weight: 500; color: var(--gray); white-space: nowrap; }
+.bstep-label { font-size: 12px; font-weight: 500; color: var(--gray); white-space: nowrap;}
 .bstep.active .bstep-label { color: var(--white); }
 .bstep-line { flex: 1; height: 1px; background: var(--border2); margin: 0 12px; min-width: 24px; }
 
@@ -725,7 +725,7 @@ footer {
 .pkg-start { font-size: 11px; color: var(--gray); display: block; margin-bottom: 2px; font-family: 'DM Mono', monospace; }
 .pkg-num {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 28px; letter-spacing: 0.03em;
+  font-size: 20px; letter-spacing: 0.03em;
   color: var(--red);
 }
 .pkg-card.pkg-custom .pkg-num { color: var(--gold, #c9a84c); font-size: 26px; }
@@ -871,7 +871,12 @@ footer {
 }
 
 /* ══ MOBILE ══ */
-@media (max-width: 768px) {
+@media (max-width: 780px) {
+  html,
+body{
+    overflow-x:hidden;
+    max-width:100%;
+}
   nav { padding: 0 20px; }
   .nav-links { display: none; }
   section { padding: 64px 20px; }
@@ -927,6 +932,11 @@ footer {
     cursor:pointer;
 }
 
+.booking-steps{
+    left:120vh;
+    margin: 12px;
+  }
+
 /* ══ PAKET HARGA MOBILE ══ */
 @media (max-width: 768px){
 
@@ -938,9 +948,11 @@ footer {
 
   .pkg-card{
     min-height:auto;
-    padding:16px;
+    width: 180px;
+    padding:20px;
     border-radius:16px;
      cursor:pointer;
+     right: 15px;
   }
 
   .pkg-top{
@@ -967,7 +979,7 @@ footer {
   }
 
   .pkg-num{
-    font-size:28px;
+    font-size:21px;
   }
 
   
@@ -1615,7 +1627,7 @@ footer {
     <div class="bstep-line"></div>
     <div class="bstep" id="step-ind-2"><div class="bstep-num">2</div><div class="bstep-label">Konfirmasi</div></div>
     <div class="bstep-line"></div>
-    <div class="bstep" id="step-ind-3"><div class="bstep-num">3</div><div class="bstep-label">Kirim &amp; Tunggu</div></div>
+    <div class="bstep" id="step-ind-3"><div class="bstep-num">3</div><div class="bstep-label">Kirim</div></div>
   </div>
   <div class="contact-wrap" style="margin-top:28px;">
     <div class="contact-info">
