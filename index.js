@@ -1,6 +1,9 @@
 /* ══════════════════════════════════════
-   PERMANA SOUND — index.js
+   index.js — Permana Sound
    ══════════════════════════════════════ */
+
+// ── NOMOR WA ──
+const WA_NUMBER = '628970633043';
 
 // ── VIDEO MODAL ──
 function openVideo(src) {
@@ -19,6 +22,22 @@ document.querySelector('.video-close').onclick = function () {
   video.currentTime = 0;
 };
 
+// ── FAQ TOGGLE ──
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const ans = item.querySelector('.faq-a');
+  const isOpen = btn.classList.contains('open');
+
+  btn.closest('.faq-col').querySelectorAll('.faq-q.open').forEach(q => {
+    q.classList.remove('open');
+    q.closest('.faq-item').querySelector('.faq-a').classList.remove('open');
+  });
+
+  if (!isOpen) {
+    btn.classList.add('open');
+    ans.classList.add('open');
+  }
+}
 
 // ── LAZY LOAD VIDEO ──
 document.addEventListener('DOMContentLoaded', function () {
@@ -33,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   videos.forEach(video => videoObserver.observe(video));
 });
-
 
 // ── SCROLL REVEAL ──
 const observer = new IntersectionObserver((entries) => {
