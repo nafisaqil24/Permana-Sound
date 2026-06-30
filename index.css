@@ -59,7 +59,7 @@ html, body {
     padding-bottom: 120px;       /* tambah jarak bawah untuk imbangi stats */
     align-items: flex-start;     /* konten rata atas, tidak mengambang tengah */
     justify-content: center;     /* tetap ditengahkan secara vertikal */
-    background-image: url('/img/consert.jpeg');
+    background-image: url('img/consert.jpeg');
     background-size: cover;
   }
 
