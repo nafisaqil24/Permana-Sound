@@ -61,6 +61,8 @@ html, body {
     justify-content: center;     /* tetap ditengahkan secara vertikal */
     background-image: url('img/consert.jpeg');
     background-size: cover;
+    position: relative;
+    overflow: hidden;
   }
 
   .hero::before {
@@ -367,7 +369,7 @@ html, body {
   #galeri .g-5 { height: 153px; }   /* item kecil baris 2 kolom 3: berpasangan dengan .g-3 */
   #galeri .g-6 { height: 190px; }   /* item baris bawah kolom 1: naik dari 95px → 190px */
   #galeri .g-7 { height: 190px; }   /* item baris bawah kolom 2: sama dengan .g-6 */
-  #galeri .g-8 { height: 190px; }   /* item baris bawah kolom 3: sama dengan .g-6 */
+
 
   #galeri .g-caption  { font-size: 11px;   /* teks keterangan sedikit lebih besar */
                         bottom: 10px;      /* posisi teks dari bawah item */
@@ -705,9 +707,9 @@ section {
 .g-3 { grid-column: span 3; height: 164px; }  /* item kecil atas-kanan 2 */
 .g-4 { grid-column: span 4; height: 164px; }  /* item medium tengah-kanan 1 */
 .g-5 { grid-column: span 3; height: 164px; }  /* item kecil tengah-kanan 2 */
-.g-6 { grid-column: span 4; height: 200px; }  /* item baris bawah 1 */
-.g-7 { grid-column: span 4; height: 200px; }  /* item baris bawah 2 */
-.g-8 { grid-column: span 4; height: 200px; }  /* item baris bawah 3 */
+.g-6 { grid-column: span 6; height: 200px; }  /* item baris bawah 1 */
+.g-7 { grid-column: span 6; height: 200px; }  /* item baris bawah 2 */
+
 
 /* Wrapper konten visual (video/gambar) */
 .g-visual {
@@ -1766,7 +1768,7 @@ html, body {
   #galeri .g-5 { height: 153px; }   /* item kecil baris 2 kolom 3: berpasangan dengan .g-3 */
   #galeri .g-6 { height: 190px; }   /* item baris bawah kolom 1: naik dari 95px → 190px */
   #galeri .g-7 { height: 190px; }   /* item baris bawah kolom 2: sama dengan .g-6 */
-  #galeri .g-8 { height: 190px; }   /* item baris bawah kolom 3: sama dengan .g-6 */
+  
 
   #galeri .g-caption  { font-size: 11px;   /* teks keterangan sedikit lebih besar */
                         bottom: 10px;      /* posisi teks dari bawah item */
@@ -1778,7 +1780,25 @@ html, body {
   #galeri .g-play svg { width: 14px;       /* ikon segitiga ikut disesuaikan */
                         height: 14px; }
 }
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 kolom di HP */
+    gap: 8px;
+  }
+  .g-1, .g-2, .g-3, .g-4, .g-5, .g-6, .g-7, {
+    grid-column: span 1;   /* reset span jadi 1 kolom */
+    height: 140px;         /* tinggi seragam biar rapi */
+  }
+  .g-1 { grid-row: span 1; grid-column: 1 / -1; height: 200px; } /* item pertama full-width */
+}
 
+@media (max-width: 480px) {
+  .gallery-grid { grid-template-columns: 1fr; } /* 1 kolom di HP kecil */
+  .g-1, .g-2, .g-3, .g-4, .g-5, .g-6, .g-7, {
+    grid-column: 1 / -1;
+    height: 180px;
+  }
+}
 /* ══ KEUNGGULAN — TATA LETAK SATU LAYAR DESKTOP (≥769px) ══ */
 @media (min-width: 769px) {
   #kenapa {
@@ -2104,9 +2124,9 @@ section {
 .g-3 { grid-column: span 3; height: 164px; }  /* item kecil atas-kanan 2 */
 .g-4 { grid-column: span 4; height: 164px; }  /* item medium tengah-kanan 1 */
 .g-5 { grid-column: span 3; height: 164px; }  /* item kecil tengah-kanan 2 */
-.g-6 { grid-column: span 4; height: 200px; }  /* item baris bawah 1 */
-.g-7 { grid-column: span 4; height: 200px; }  /* item baris bawah 2 */
-.g-8 { grid-column: span 4; height: 200px; }  /* item baris bawah 3 */
+.g-6 { grid-column: span 6; height: 200px; }  /* item baris bawah 1 */
+.g-7 { grid-column: span 6; height: 200px; }  /* item baris bawah 2 */
+
 
 /* Wrapper konten visual (video/gambar) */
 .g-visual {
